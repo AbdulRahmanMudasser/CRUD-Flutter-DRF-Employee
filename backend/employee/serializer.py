@@ -38,7 +38,7 @@ class EmployeeSerializer(serializers.Serializer):
         instance.hire_date = validated_data.get('hire_date', instance.hire_date)
         instance.email = validated_data.get('email', instance.email)
         instance.department = validated_data.get('department', instance.department)
-        instance.manager = validated_data('manager', instance.manager)
+        instance.manager = validated_data.get('manager', instance.manager)
         
         if 'skills' in validated_data:
             skills = validated_data.pop('skills')
