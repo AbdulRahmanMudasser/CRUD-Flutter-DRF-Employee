@@ -23,14 +23,41 @@ class DepartmentListCreate(APIView):
         
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+class DepartmentDetail(APIView):
+    def delete(self, request, pk):
+        department = get_object_or_404(DepartmentModel, pk=pk)
+        
+        department.delete()
+        
+        return Response({'Message': 'Department Deleted'}, status=status.HTTP_200_OK)
+
     
-class SkillList(APIView):
+class SkillListCreate(APIView):
     def get(self, request):
         skills = SkillModel.objects.all()
         
         serializer = SkillSerializer(skills, many=True)
         
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+    def post(self, request):
+        serializer = SkillSerializer(data=request.data)
+        
+        if serializer.is_valid():
+            serializer.save()
+            
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+class SkillDetail(APIView):
+    def delete(self, request, pk):
+        skill = get_object_or_404(SkillModel, pk=pk)
+        
+        skill.delete()
+        
+        return Response({'Message': 'Skill Deleted'}, status=status.HTTP_200_OK)
+        
     
 class EmployeeListCreate(APIView):
     def get(self, request):
