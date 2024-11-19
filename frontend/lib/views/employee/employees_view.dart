@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:frontend/controllers/employee_controller.dart';
 import 'package:get/get.dart';
 
-class EmployeesView extends StatelessWidget {
-  EmployeesView({super.key});
+class EmployeeView extends StatelessWidget {
+  EmployeeView({super.key});
 
   final EmployeeController controller = Get.put(EmployeeController());
 
@@ -14,7 +14,9 @@ class EmployeesView extends StatelessWidget {
         child: Obx(
           () {
             if (controller.isLoading.value) {
-              return const CircularProgressIndicator();
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
             } else {
               return SingleChildScrollView(
                 scrollDirection: Axis.horizontal,

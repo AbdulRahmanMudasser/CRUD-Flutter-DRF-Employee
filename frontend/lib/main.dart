@@ -3,6 +3,8 @@ import 'package:frontend/views/deparment/departments_view.dart';
 import 'package:frontend/views/employee/employees_view.dart';
 import 'package:get/get.dart';
 
+import 'views/skill/skills_view.dart';
+
 void main() {
   runApp(const MyApp());
 }

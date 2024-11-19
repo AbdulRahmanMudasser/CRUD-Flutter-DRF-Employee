@@ -5,6 +5,13 @@ class EmployeeController extends GetxController{
   var employees = [].obs;
   var isLoading = false.obs;
 
+  @override
+  void onInit() {
+    fetchEmployee();
+
+    super.onInit();
+  }
+
   // Fetch Employees
   void fetchEmployee() async {
     try {
