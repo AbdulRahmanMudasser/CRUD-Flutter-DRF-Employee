@@ -8,7 +8,7 @@ class EmployeesModel {
   final double salary;
   final String hireDate;
   final String email;
-  final DepartmentsModel departments;
+  final DepartmentsModel department;
   final List<SkillsModel> skills;
   final EmployeesModel? manager;
 
@@ -19,7 +19,7 @@ class EmployeesModel {
     required this.salary,
     required this.hireDate,
     required this.email,
-    required this.departments,
+    required this.department,
     required this.skills,
     required this.manager,
   });
@@ -33,7 +33,7 @@ class EmployeesModel {
       salary: json['salary'],
       hireDate: json['hire_date'],
       email: json['email'],
-      departments: DepartmentsModel.fromJson(json['department']),
+      department: DepartmentsModel.fromJson(json['department']),
       skills: (json['skills'] as List).map((skill) => SkillsModel.fromJson(skill)).toList(),
       manager: json['manager'] != null ? EmployeesModel.fromJson(json['manager']) : null,
     );
