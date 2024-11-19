@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import DepartmentModel, SkillModel, EmployeeModel
+from rest_framework.validators import UniqueValidator 
 
 # Department Serializer
 class DepartmentSerializer(serializers.ModelSerializer):
@@ -19,7 +20,7 @@ class EmployeeSerializer(serializers.Serializer):
     position = serializers.CharField(max_length=100)
     salary = serializers.DecimalField(decimal_places=2, max_digits=10)
     hire_date = serializers.DateField()
-    email = serializers.EmailField(validators=[serializers.UniqueValidator(queryset=EmployeeModel.objects.all())])
+    email = serializers.EmailField(validators=[UniqueValidator(queryset=EmployeeModel.objects.all())])
     department = serializers.PrimaryKeyRelatedField(queryset=DepartmentModel.objects.all())
     skills = serializers.PrimaryKeyRelatedField(many=True, queryset=SkillModel.objects.all())
     manager = serializers.PrimaryKeyRelatedField(queryset=EmployeeModel.objects.all(), required=False, allow_null=True)

@@ -5,13 +5,24 @@ from rest_framework import status
 from .models import DepartmentModel, SkillModel, EmployeeModel
 from .serializer import DepartmentSerializer, SkillSerializer, EmployeeSerializer
 
-class DepartmentList(APIView):
+class DepartmentListCreate(APIView):
     def get(self, request):
         departments = DepartmentModel.objects.all()
     
         serializer = DepartmentSerializer(departments, many=True)
         
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+    def post(self, request):
+        serializer = DepartmentSerializer(data=request.data)
+        
+        if serializer.is_valid():
+            serializer.save()
+            
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
     
 class SkillList(APIView):
     def get(self, request):
@@ -35,7 +46,7 @@ class EmployeeListCreate(APIView):
         if serializer.is_valid():
             serializer.save()
             
-            return Response(serializer.data, status=status.HTTP_200_OK)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
         
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
