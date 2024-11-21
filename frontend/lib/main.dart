@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/views/deparment/departments_view.dart';
-import 'package:frontend/views/employee/employees_view.dart';
 import 'package:get/get.dart';
 
 import 'views/skill/skills_view.dart';
@@ -21,7 +19,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: DepartmentView(),
+      home: SkillsView(),
     );
   }
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/controllers/skill_controller.dart';
 import 'package:get/get.dart';
 
-import '../../controllers/skill_controller.dart';
-import 'methods/create_skill_dialog.dart';
+import 'methods/skill_dialog.dart';
 
 class SkillsView extends StatelessWidget {
   SkillsView({super.key});
@@ -25,8 +25,8 @@ class SkillsView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    "Skills",
-                    style: TextStyle(fontSize: 13, fontWeight: FontWeight.w500),
+                    "Skills List",
+                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
                   ),
                   const SizedBox(height: 25),
                   SingleChildScrollView(
@@ -35,7 +35,7 @@ class SkillsView extends StatelessWidget {
                       dataTextStyle: const TextStyle(fontSize: 12),
                       headingTextStyle: const TextStyle(
                         fontSize: 12,
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w600,
                       ),
                       dividerThickness: 0,
                       border: TableBorder.all(
@@ -59,13 +59,26 @@ class SkillsView extends StatelessWidget {
                                   DataCell(
                                     Center(
                                       child: GestureDetector(
-                                        onTap: () {},
-                                        child: const Icon(Icons.edit, size: 18),
+                                        onTap: () => skillDialog(context, controller, skill, true),
+                                        child: Icon(
+                                          Icons.edit,
+                                          size: 18,
+                                          color: Theme.of(context).primaryColor,
+                                        ),
                                       ),
                                     ),
                                   ),
-                                  const DataCell(
-                                    Center(child: Icon(Icons.delete, size: 18)),
+                                  DataCell(
+                                    Center(
+                                      child: GestureDetector(
+                                        onTap: () => controller.deleteSkill(skill.id),
+                                        child: Icon(
+                                          Icons.delete,
+                                          size: 18,
+                                          color: Theme.of(context).primaryColorDark,
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                 ],
                               ))
@@ -79,11 +92,11 @@ class SkillsView extends StatelessWidget {
         }),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => createSkillDialog(context, controller),
+        onPressed: () => skillDialog(context, controller, null, false),
+        hoverElevation: 0,
         foregroundColor: Colors.white,
         elevation: 0,
         shape: const CircleBorder(),
-        hoverElevation: 0,
         child: const Icon(Icons.add),
       ),
     );
