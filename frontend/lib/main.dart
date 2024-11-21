@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/routes/routes.dart';
 import 'package:get/get.dart';
-
-import 'views/skill/skills_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,13 +12,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Flutter Demo',
+      title: 'Employee Management System',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: SkillsView(),
+      // home: SkillView(),
+      initialRoute: AppRoutes.employee,
+      getPages: AppRoutes.routes,
     );
   }
 }

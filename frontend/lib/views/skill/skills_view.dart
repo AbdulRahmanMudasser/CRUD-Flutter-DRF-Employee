@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 
 import 'methods/skill_dialog.dart';
 
-class SkillsView extends StatelessWidget {
-  SkillsView({super.key});
+class SkillView extends StatelessWidget {
+  SkillView({super.key});
 
   final SkillController controller = Get.put(SkillController());
 
